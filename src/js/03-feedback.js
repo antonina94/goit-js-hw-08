@@ -18,17 +18,18 @@ populateData()
 
 function onFormSubmit(event){
     event.preventDefault()
+    
     if(!input.value || !textarea.value){
         alert('Заповніть всі поля')
     }
-    else{
-        console.log(formData)
-        input.value ="",
-        textarea.value = ""
-    }
-    event.target.reset()
-    localStorage.removeItem(STORAGE_KEY)
     
+    else{
+        console.log(formData) 
+        event.currentTarget.reset()
+        localStorage.removeItem(STORAGE_KEY)
+         formData[input.name] = ''
+        formData[textarea.name] = ''
+    }
 }
 
 function onFormInput(event) {
@@ -48,10 +49,6 @@ if(savedData){
     if(parsData.message){
         formData[textarea.name] = parsData.message
         textarea.value = parsData.message
-    }
-    else{
-        textarea.value = '',
-        input.value = ''
     }
 }
 }
